@@ -10,25 +10,27 @@ import UIKit
 
 class InventoryViewController: UIViewController {
     
-    lazy var scannerView: ScannerView = {
-        let view = ScannerView()
+    lazy var scanner: ScannerView = {
+        let stackView = self.view.subviews[0]
+        let view = ScannerView(frame: CGRect(x: 0, y: 0, width: stackView.subviews[1].bounds.width, height: stackView.subviews[1].bounds.height))
+        view.backgroundColor = .white
         
         return view
     }()
+    
+    weak var inventory: InventoryTableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let inventoryStackView = self.view.subviews[0] as! UIStackView
         
-        inventoryStackView.backgroundColor = .purple
-        
         let navBar = inventoryStackView.subviews[0] as! InventoryNavigationBar
         navBar.inventoryDelegate = self
         
-        let tableView = inventoryStackView.subviews[1] as! InventoryTableView
-        tableView.delegate = inventoryStackView.subviews[1] as! InventoryTableView
-        tableView.dataSource = inventoryStackView.subviews[1] as! InventoryTableView
+        let tableView = inventoryStackView.subviews[1].subviews[1] as! InventoryTableView
+        tableView.delegate = inventoryStackView.subviews[1].subviews[1] as! InventoryTableView
+        tableView.dataSource = inventoryStackView.subviews[1].subviews[1] as! InventoryTableView
         
         let tabBar = inventoryStackView.subviews[2] as! InventoryTabBar
         tabBar.delegate = inventoryStackView.subviews[2] as! InventoryTabBar
@@ -50,17 +52,25 @@ extension InventoryViewController: InventoryNavBarDelegate {
 
 extension InventoryViewController: InventoryTabBarDelegate {
     func bringForwardInventoryTableView() {
-        self.view.sendSubviewToBack(scannerView)
+        let secondStack = self.view.subviews[0].subviews[1].subviews
+        for x in secondStack {
+            if (x is InventoryTableView) {
+                self.view.subviews[0].subviews[1].bringSubviewToFront(x)
+            }
+        }
     }
     
     func bringForwardScannerView() {
-        let scan = ScannerView()
-        self.view.insertSubview(scan, at: 0)
+        let secondStack = self.view.subviews[0].subviews[1].subviews
+        for x in secondStack {
+            if (x is ScannerView) {
+                self.view.subviews[0].subviews[1].bringSubviewToFront(x)
+            }
+        }
     }
     
     func bringForwardShoppingCart() {
         print("Shopping cart view controller")
     }
-    
     
 }
