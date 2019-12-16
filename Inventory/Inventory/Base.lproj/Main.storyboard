@@ -71,36 +71,7 @@
                                     </navigationBar>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uqa-Qa-Uk7" customClass="ScannerView" customModule="Inventory" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="718"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MW6-12-Yw0">
-                                                <rect key="frame" x="100" y="342" width="214" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="ldp-Hl-aIX"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xt-xg-nat">
-                                                <rect key="frame" x="184" y="476" width="46" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                                <connections>
-                                                    <action selector="enterButton" destination="Uqa-Qa-Uk7" eventType="touchUpInside" id="tdL-Ud-NR7"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstItem="8Xt-xg-nat" firstAttribute="centerX" secondItem="Uqa-Qa-Uk7" secondAttribute="centerX" id="GrH-VO-BNF"/>
-                                            <constraint firstAttribute="trailing" secondItem="MW6-12-Yw0" secondAttribute="trailing" constant="100" id="Q7o-PF-g7Z"/>
-                                            <constraint firstItem="MW6-12-Yw0" firstAttribute="centerX" secondItem="Uqa-Qa-Uk7" secondAttribute="centerX" id="dBf-nT-wJQ"/>
-                                            <constraint firstItem="8Xt-xg-nat" firstAttribute="top" secondItem="MW6-12-Yw0" secondAttribute="bottom" constant="100" id="fYe-5I-FbB"/>
-                                            <constraint firstItem="MW6-12-Yw0" firstAttribute="leading" secondItem="Uqa-Qa-Uk7" secondAttribute="leading" constant="100" id="kfq-wh-j9d"/>
-                                            <constraint firstItem="MW6-12-Yw0" firstAttribute="centerY" secondItem="Uqa-Qa-Uk7" secondAttribute="centerY" id="plg-GB-C0P"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="btnEnter" destination="8Xt-xg-nat" id="1WN-nf-ooF"/>
-                                            <outlet property="txtWMS" destination="MW6-12-Yw0" id="0Kp-jV-dez"/>
-                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sea-AA-3pg" customClass="ScannerLabel" customModule="Inventory" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="768" width="414" height="50"/>
@@ -151,7 +122,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Xpm-d6-VVL">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SyG-hL-ucr">
+                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SyG-hL-ucr" customClass="InventoryNavigationBar" customModule="Inventory" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="EmZ-UW-Q39"/>
@@ -163,21 +134,70 @@
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pXd-KJ-M4S">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVf-sl-cuf">
                                         <rect key="frame" x="0.0" y="50" width="414" height="718"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5EH-nO-JoA" customClass="ScannerView" customModule="Inventory" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="718"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v8Y-fM-Dlh" customClass="InventoryTableView" customModule="Inventory" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="718"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inventoryCell" id="GE7-2b-l0a" customClass="InventoryTableViewCell" customModule="Inventory" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GE7-2b-l0a" id="J6X-bs-Hks">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="KX5-iJ-jbr">
+                                                                    <rect key="frame" x="5" y="5" width="404" height="70"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRS-Qg-JTX">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="319" height="70"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6d2-k8-8Vm">
+                                                                            <rect key="frame" x="334" y="0.0" width="70" height="70"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="70" id="GGx-8U-BCs"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="KX5-iJ-jbr" firstAttribute="top" secondItem="J6X-bs-Hks" secondAttribute="top" constant="5" id="1qx-ao-7Om"/>
+                                                                <constraint firstItem="KX5-iJ-jbr" firstAttribute="leading" secondItem="J6X-bs-Hks" secondAttribute="leading" constant="5" id="DlN-wt-rVg"/>
+                                                                <constraint firstAttribute="trailing" secondItem="KX5-iJ-jbr" secondAttribute="trailing" constant="5" id="FZz-0C-BdS"/>
+                                                                <constraint firstAttribute="bottom" secondItem="KX5-iJ-jbr" secondAttribute="bottom" constant="5" id="OrM-Ov-ytd"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="imgInventory" destination="6d2-k8-8Vm" id="X8P-ny-OS8"/>
+                                                            <outlet property="lblItemName" destination="nRS-Qg-JTX" id="60X-6G-teg"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inventoryCell" id="2ud-Cw-iPf">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ud-Cw-iPf" id="J3c-mF-e9S">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
-                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faV-fk-lge">
+                                        <constraints>
+                                            <constraint firstItem="v8Y-fM-Dlh" firstAttribute="top" secondItem="XVf-sl-cuf" secondAttribute="top" id="8Jf-A5-CcU"/>
+                                            <constraint firstAttribute="bottom" secondItem="5EH-nO-JoA" secondAttribute="bottom" id="9k1-gr-EY6"/>
+                                            <constraint firstAttribute="trailing" secondItem="v8Y-fM-Dlh" secondAttribute="trailing" id="Ly5-0n-pKD"/>
+                                            <constraint firstAttribute="trailing" secondItem="5EH-nO-JoA" secondAttribute="trailing" id="Wmt-r6-1HO"/>
+                                            <constraint firstItem="5EH-nO-JoA" firstAttribute="top" secondItem="XVf-sl-cuf" secondAttribute="top" id="hba-1r-kMZ"/>
+                                            <constraint firstItem="5EH-nO-JoA" firstAttribute="leading" secondItem="XVf-sl-cuf" secondAttribute="leading" id="qVy-GT-ahs"/>
+                                            <constraint firstAttribute="bottom" secondItem="v8Y-fM-Dlh" secondAttribute="bottom" id="yBc-lH-g2z"/>
+                                            <constraint firstItem="v8Y-fM-Dlh" firstAttribute="leading" secondItem="XVf-sl-cuf" secondAttribute="leading" id="yHT-Q2-UhA"/>
+                                        </constraints>
+                                    </view>
+                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faV-fk-lge" customClass="InventoryTabBar" customModule="Inventory" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="768" width="414" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -192,11 +212,14 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="faV-fk-lge" secondAttribute="trailing" id="2Jo-Z2-Gm7"/>
+                                    <constraint firstItem="XVf-sl-cuf" firstAttribute="leading" secondItem="Xpm-d6-VVL" secondAttribute="leading" id="3RU-L6-oJ7"/>
+                                    <constraint firstItem="faV-fk-lge" firstAttribute="top" secondItem="XVf-sl-cuf" secondAttribute="bottom" id="6hc-ym-me0"/>
+                                    <constraint firstItem="XVf-sl-cuf" firstAttribute="top" secondItem="SyG-hL-ucr" secondAttribute="bottom" id="8nU-9m-BmD"/>
                                     <constraint firstItem="faV-fk-lge" firstAttribute="leading" secondItem="Xpm-d6-VVL" secondAttribute="leading" id="ZC9-Pe-ct7"/>
                                     <constraint firstItem="SyG-hL-ucr" firstAttribute="top" secondItem="Xpm-d6-VVL" secondAttribute="top" id="hgb-dz-0AL"/>
-                                    <constraint firstItem="faV-fk-lge" firstAttribute="top" secondItem="pXd-KJ-M4S" secondAttribute="bottom" id="iEB-Zp-Dls"/>
                                     <constraint firstAttribute="trailing" secondItem="SyG-hL-ucr" secondAttribute="trailing" id="k1U-qF-V2h"/>
                                     <constraint firstAttribute="bottom" secondItem="faV-fk-lge" secondAttribute="bottom" id="qof-9g-1z9"/>
+                                    <constraint firstAttribute="trailing" secondItem="XVf-sl-cuf" secondAttribute="trailing" id="rN7-fj-Av4"/>
                                     <constraint firstItem="SyG-hL-ucr" firstAttribute="leading" secondItem="Xpm-d6-VVL" secondAttribute="leading" id="wBf-UU-8h9"/>
                                 </constraints>
                             </stackView>

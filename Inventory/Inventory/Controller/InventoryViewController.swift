@@ -28,9 +28,13 @@ class InventoryViewController: UIViewController {
         let navBar = inventoryStackView.subviews[0] as! InventoryNavigationBar
         navBar.inventoryDelegate = self
         
-        let tableView = inventoryStackView.subviews[1].subviews[1] as! InventoryTableView
-        tableView.delegate = inventoryStackView.subviews[1].subviews[1] as! InventoryTableView
-        tableView.dataSource = inventoryStackView.subviews[1].subviews[1] as! InventoryTableView
+        let tableView = inventoryStackView.subviews[1].subviews[2] as! InventoryTableView
+        tableView.delegate = inventoryStackView.subviews[1].subviews[2] as! InventoryTableView
+        tableView.dataSource = inventoryStackView.subviews[1].subviews[2] as! InventoryTableView
+        
+        let collection = inventoryStackView.subviews[1].subviews[0] as! CartCollectionView
+        collection.delegate = inventoryStackView.subviews[1].subviews[0] as! CartCollectionView
+        collection.dataSource = inventoryStackView.subviews[1].subviews[0] as! CartCollectionView
         
         let tabBar = inventoryStackView.subviews[2] as! InventoryTabBar
         tabBar.delegate = inventoryStackView.subviews[2] as! InventoryTabBar
@@ -70,7 +74,12 @@ extension InventoryViewController: InventoryTabBarDelegate {
     }
     
     func bringForwardShoppingCart() {
-        print("Shopping cart view controller")
+        let secondStack = self.view.subviews[0].subviews[1].subviews
+        for x in secondStack {
+            if (x is CartCollectionView) {
+                self.view.subviews[0].subviews[1].bringSubviewToFront(x)
+            }
+        }
     }
     
 }

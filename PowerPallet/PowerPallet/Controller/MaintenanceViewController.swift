@@ -42,7 +42,6 @@ class MaintenanceViewController: UIViewController {
         let alert: UIAlertController = UIAlertController(title: "FIXED!", message: "Is Power Pallet fixed?", preferredStyle: .actionSheet)
         
         let fixAction: UIAlertAction = UIAlertAction(title: "YES", style: .default) { [weak self] (_) in
-            self.intArray.remove(at: myIndex)
             self?.cvMaintenance.deleteItems(at: myIndex)
         }
         
