@@ -26,7 +26,6 @@ class ScannerView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
     }
     
     override func layoutSublayers(of layer: CALayer) {

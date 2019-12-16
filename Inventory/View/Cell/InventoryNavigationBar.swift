@@ -18,10 +18,12 @@ class InventoryNavigationBar: UINavigationBar {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setUpInventoryNavigationBar()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setUpInventoryNavigationBar()
     }
     
     @objc fileprivate func dismiss2HomeScene() {
@@ -32,12 +34,21 @@ class InventoryNavigationBar: UINavigationBar {
     }
     
     private func setUpInventoryNavigationBar() {
-        
+        self.barStyle = UIBarStyle.black
+        self.isTranslucent = false
+        setUpNavigationTitle()
+        setUpLeftBarButtonItem()
     }
     
     private func setUpNavigationTitle() {
         self.topItem?.title = "INVENTORY"
-        
+        self.titleTextAttributes = [NSAttributedString.Key.foregroundColor.self : UIColor.snapOnGold]
+    }
+    
+    private func setUpLeftBarButtonItem() {
+        let left = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(dismiss2HomeScene))
+        left.tintColor = .white
+        self.topItem?.leftBarButtonItem = left
     }
 
 }

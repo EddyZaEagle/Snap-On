@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8302BD2723A407200026031B /* InventoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302BD2623A407200026031B /* InventoryTableView.swift */; };
+		8302BD2923A4079A0026031B /* InventoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302BD2823A4079A0026031B /* InventoryTableViewCell.swift */; };
+		8302BD2D23A42E900026031B /* InventoryTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302BD2C23A42E900026031B /* InventoryTabBar.swift */; };
 		8306DDED23A2F3BE00C98EE0 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8306DDEC23A2F3BE00C98EE0 /* InventoryViewController.swift */; };
 		8306DDEF23A2FF4D00C98EE0 /* InventoryNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8306DDEE23A2FF4D00C98EE0 /* InventoryNavigationBar.swift */; };
 		8368C71923A2A19400BD49D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8368C71823A2A19400BD49D8 /* AppDelegate.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8302BD2623A407200026031B /* InventoryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableView.swift; sourceTree = "<group>"; };
+		8302BD2823A4079A0026031B /* InventoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableViewCell.swift; sourceTree = "<group>"; };
+		8302BD2C23A42E900026031B /* InventoryTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTabBar.swift; sourceTree = "<group>"; };
 		8306DDEC23A2F3BE00C98EE0 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		8306DDEE23A2FF4D00C98EE0 /* InventoryNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryNavigationBar.swift; sourceTree = "<group>"; };
 		8368C71523A2A19400BD49D8 /* Inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +95,7 @@
 				8368C73523A2C03700BD49D8 /* Cell */,
 				8368C73823A2CE8500BD49D8 /* ScannerView.swift */,
 				8368C73A23A2E72200BD49D8 /* ScannerLabel.swift */,
+				8302BD2623A407200026031B /* InventoryTableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,6 +123,8 @@
 			children = (
 				8368C73623A2C09300BD49D8 /* ScannerNavigationBar.swift */,
 				8306DDEE23A2FF4D00C98EE0 /* InventoryNavigationBar.swift */,
+				8302BD2823A4079A0026031B /* InventoryTableViewCell.swift */,
+				8302BD2C23A42E900026031B /* InventoryTabBar.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -194,8 +203,11 @@
 				8306DDEF23A2FF4D00C98EE0 /* InventoryNavigationBar.swift in Sources */,
 				8368C73023A2A74900BD49D8 /* Color.swift in Sources */,
 				8306DDED23A2F3BE00C98EE0 /* InventoryViewController.swift in Sources */,
+				8302BD2D23A42E900026031B /* InventoryTabBar.swift in Sources */,
 				8368C71923A2A19400BD49D8 /* AppDelegate.swift in Sources */,
+				8302BD2923A4079A0026031B /* InventoryTableViewCell.swift in Sources */,
 				8368C73723A2C09300BD49D8 /* ScannerNavigationBar.swift in Sources */,
+				8302BD2723A407200026031B /* InventoryTableView.swift in Sources */,
 				8368C71B23A2A19400BD49D8 /* SceneDelegate.swift in Sources */,
 				8368C73423A2B67300BD49D8 /* ScannerViewController.swift in Sources */,
 				8368C73923A2CE8500BD49D8 /* ScannerView.swift in Sources */,
