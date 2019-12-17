@@ -13,6 +13,7 @@
 		8378C8E823A6BDB00057E2FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8378C8E623A6BDB00057E2FD /* Main.storyboard */; };
 		8378C8EA23A6BDB10057E2FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8378C8E923A6BDB10057E2FD /* Assets.xcassets */; };
 		8378C8ED23A6BDB10057E2FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8378C8EB23A6BDB10057E2FD /* LaunchScreen.storyboard */; };
+		837EB08E23A8403100832E59 /* BoxAnchorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837EB08D23A8403100832E59 /* BoxAnchorLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8378C8E923A6BDB10057E2FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8378C8EC23A6BDB10057E2FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8378C8EE23A6BDB10057E2FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		837EB08D23A8403100832E59 /* BoxAnchorLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxAnchorLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				8378C8E023A6BDB00057E2FD /* AppDelegate.swift */,
 				8378C8E223A6BDB00057E2FD /* SceneDelegate.swift */,
 				8378C8E423A6BDB00057E2FD /* ViewController.swift */,
+				837EB08D23A8403100832E59 /* BoxAnchorLocation.swift */,
 				8378C8E623A6BDB00057E2FD /* Main.storyboard */,
 				8378C8E923A6BDB10057E2FD /* Assets.xcassets */,
 				8378C8EB23A6BDB10057E2FD /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				8378C8E523A6BDB00057E2FD /* ViewController.swift in Sources */,
 				8378C8E123A6BDB00057E2FD /* AppDelegate.swift in Sources */,
 				8378C8E323A6BDB00057E2FD /* SceneDelegate.swift in Sources */,
+				837EB08E23A8403100832E59 /* BoxAnchorLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
