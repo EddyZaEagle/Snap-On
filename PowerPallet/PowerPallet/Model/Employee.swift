@@ -7,39 +7,33 @@
 //
 
 import Foundation
+import Firebase
 
 protocol EmployeeProtocol {
-    var id: String { get }
-    var firdtNsmr: String { get }
-    var lastName: String { get }
+    var fullName: String { get }
     var wms: String { get }
     var experationDate: Bool { get }
-    init(id: String, firstName: String, lastName: String, wms: String, experationDate: Date)
+    init(id: String, firstName: String, lastName: String, wms: String, experationDate: String)
+    init(employee: DataSnapshot)
 }
 
 struct EmployeeStruct: EmployeeProtocol {
     
-    private var _id: String
+    
+    enum wmsLogin: Error {
+        case notEightCharators
+        case notWMS
+        case wmsNotFound
+    }
+    
     private var _firstName: String
     private var _lastName: String
     private var _wms: String
-    private var _valid: Date
+    private var _valid: String
     
-    var id: String {
+    var fullName: String {
         get {
-            return _id
-        }
-    }
-    
-    var firdtNsmr: String {
-        get {
-            return _firstName
-        }
-    }
-    
-    var lastName: String {
-        get {
-            return _lastName
+            return "\(_firstName) \(_lastName)"
         }
     }
     
@@ -51,15 +45,30 @@ struct EmployeeStruct: EmployeeProtocol {
     
     var experationDate: Bool {
         get {
-            return _valid < Date.init()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM-dd-yyyy"
+            let permite = dateFormatter.date(from: _valid)
+            return permite! > Date.init()
         }
     }
     
-    init(id: String, firstName: String, lastName: String, wms: String, experationDate: Date) {
-        _id = id
+    init(id: String, firstName: String, lastName: String, wms: String, experationDate: String) {
         _firstName = firstName
         _lastName = lastName
         _wms = wms
         _valid = experationDate
+    }
+    
+    init(employee: DataSnapshot) {
+        let temp = employee.value as! NSDictionary
+        _firstName = temp["FIRST_NAME"] as! String
+        _lastName = temp["LAST_NAME"] as! String
+        _wms = temp["WMS"] as! String
+        _valid = temp["EXPERATION_DATE"] as! String
+    }
+    
+    public func employeeLogin(wms: String) throws {
+        if !wms.isEightCharators { throw wmsLogin.notEightCharators }
+        else if !wms.isWMS { throw wmsLogin.notWMS }
     }
 }

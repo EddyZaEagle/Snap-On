@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SafetyViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class SafetyViewController: UIViewController {
     @IBOutlet weak var navBarSafety: SafetyNavBar!
     @IBOutlet weak var doneView: SafetyDoneView!
     
-    private var _specs: [String] = [String().safety1, String().safety2, String().safety3, String().safety4, String().safety5, String().safety6, String().safety7, String().safety8, String().safety9, String().safety10,String().safety11, String().safety12, String().safety13, String().safety14, String().safety15, String().safety16, String().safety17, String().safety18]
+    private var _specs: [String] = [String.safety1, String.safety2, String.safety3, String.safety4, String.safety5, String.safety6, String.safety7, String.safety8, String.safety9, String.safety10,String.safety11, String.safety12, String.safety13, String.safety14, String.safety15, String.safety16, String.safety17, String.safety18]
     
     private var safetyCheckArray: [SafetyCheckClass] = [SafetyCheckClass]()
     
@@ -33,6 +34,8 @@ class SafetyViewController: UIViewController {
         
         return false
     }
+    
+    var ref: DatabaseReference!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -67,6 +70,18 @@ class SafetyViewController: UIViewController {
         }
     }
     
+    
+    private func firebaseLoadSpecification() {
+        ref = Database.database().reference(withPath: "HISTORY").child("EMORENAM").child("PP1")
+        
+        var specDictionary = [String : Bool]()
+        
+        for x in safetyCheckArray {
+            specDictionary.updateValue(x.passFail!, forKey: x.safetySpecification)
+        }
+        
+        ref.setValue(specDictionary)
+    }
 }
 
 extension SafetyViewController: SafetNavBarProtocol {
@@ -96,6 +111,9 @@ extension SafetyViewController: SafetNavBarProtocol {
 
 extension SafetyViewController: DoneProtocol {
     func checkAllSafetySpecs() {
+        for x in safetyCheckArray {
+            print("\(x.safetySpecification) \(x.passFail!)")
+        }
         if(allDone) {
             print("not all specification have been checked off")
         }
@@ -113,6 +131,7 @@ extension SafetyViewController: DoneProtocol {
                     self.safetyCheckArray.removeAll()
                 })
             }
+            loadSpecificationArray()
         }
     }
 }

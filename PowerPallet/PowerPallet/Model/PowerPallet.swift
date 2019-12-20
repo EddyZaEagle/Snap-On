@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import Firebase
 
 protocol PowerPalletProtocol {
     var id: String { get }
     var isWorking: Bool { get }
     var isInuse: Bool { get }
     init(id: String, isWorking: Bool, isInUse: Bool)
+    init(powerpallet: DataSnapshot)
 }
 
 struct PowerPalletStruct: PowerPalletProtocol {
@@ -43,5 +45,12 @@ struct PowerPalletStruct: PowerPalletProtocol {
         _id = id
         _isWorking = isWorking
         _isInUse = isInUse
+    }
+    
+    init(powerpallet: DataSnapshot) {
+        let temp = powerpallet.value as! NSDictionary
+        _id = temp["ID"] as! String
+        _isWorking = temp["IS_WORKING"] as! Bool
+        _isInUse = temp["IS_IN_USE"] as! Bool
     }
 }

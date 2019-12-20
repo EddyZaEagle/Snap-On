@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LoginProtocol {
-    func findEmployee(wms: String) -> Bool
+    func findEmployee(wms: UITextField)
     func findPowerPallet(id: String)
     func exitLogin()
 }
@@ -38,19 +38,12 @@ class LoginView: UIView {
     }
     
     @IBAction private func findButton() {
-        if let delegate = loginDelegate, let validationText = txtValidate.text {
+        if let delegate = loginDelegate {
             switch txtValidate.tag {
             case 101:
-                if (delegate.findEmployee(wms:validationText)) {
-                    txtValidate.tag = 666
-                    txtValidate.text?.removeAll()
-                    DispatchQueue.main.async {
-                        self.txtValidate.attributedPlaceholder = NSAttributedString(string: "Enter Power Pallet ID", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-                    }
-                }
-                else { print("Employee not found") }
+                delegate.findEmployee(wms: txtValidate)
             case 666:
-                delegate.findPowerPallet(id: validationText)
+                delegate.findPowerPallet(id: txtValidate.text!)
             default:
                 print("unknowen error")
             }

@@ -7,8 +7,30 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
+    
+    enum EmployeeLogin: Error {
+        case notWMS
+        case notFound
+        case badConnection
+        case unknownError
+        case inValidPermit
+    }
+    
+    enum PowerPalletLogin: Error {
+        case notPowerPallet
+        case notFound
+        case badConnection
+        case unknownError
+        case isBroken
+        case inUse
+    }
+    
+    var ref: DatabaseReference!
+    var employee: EmployeeStruct!
+    var powerpallet: PowerPalletStruct!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +103,24 @@ class HomeViewController: UIViewController {
         }
         else { print("Could not present maintenance view controller") }
     }
+    
+    private func go2SafetyViewController() {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "safetyVC") as? SafetyViewController {
+            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: {
+                self.view.bringSubviewToFront(self.view.subviews[0])
+                self.powerpalletInUse()
+            })
+        }
+        else { print("error can't present safety view controller") }
+    }
+    
+    private func powerpalletInUse() {
+        ref = Database.database().reference(withPath: "POWERPALLET").child(powerpallet.id)
+        
+        ref.updateChildValues(["IS_IN_USE" : true])
+    }
 }
 
 extension HomeViewController: HomeDelegate {
@@ -97,19 +137,48 @@ extension HomeViewController: HomeDelegate {
 }
 
 extension HomeViewController: LoginProtocol {
-    func findEmployee(wms: String) -> Bool {
-        return wms == "EMORENAM"
+    func findEmployee(wms: UITextField) {
+        
+        ref = Database.database().reference(withPath: "EMPLOYEE").child(wms.text!)
+
+        ref.observeSingleEvent(of: DataEventType.value) { (snapshot) in
+            if (snapshot.hasChildren()) {
+                self.employee = EmployeeStruct(employee: snapshot)
+                if (self.employee.experationDate) {
+                    wms.text?.removeAll()
+                    wms.placeholder = "Enter Power Pallet ID"
+                    wms.tag = 666
+                }
+                else {
+                    print("Employee permite as expired!")
+                    wms.text?.removeAll()
+                }
+                
+            }
+            else { print("WMS NOT FOUND") }
+        }
     }
     
+    
     func findPowerPallet(id: String) {
-        print(id)
+        ref = Database.database().reference(withPath: "POWERPALLET").child(id)
         
-        if let vc = storyboard?.instantiateViewController(identifier: "safetyVC") as? SafetyViewController {
-            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: {
-                self.view.bringSubviewToFront(self.view.subviews[0])
-            })
+        ref.observeSingleEvent(of: DataEventType.value) { (snaphot) in
+            if (snaphot.hasChildren()) {
+                
+                self.powerpallet = PowerPalletStruct(powerpallet: snaphot)
+                
+                if(self.powerpallet.isWorking) {
+                    if (!self.powerpallet.isInuse) {
+                        self.go2SafetyViewController()
+                    }
+                    else { print("Power Pallet is in use") }
+                }
+                else { print("Power Pallet is not working") }
+                
+                
+            }
+            else { print("Power pallet not found") }
         }
     }
     
