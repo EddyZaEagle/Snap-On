@@ -57,6 +57,7 @@ class InventoryTabBar: UITabBar {
 extension InventoryTabBar: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let delegate = inventoryDelegate else {
+            print("error with tab bar delegate")
             return
         }
         

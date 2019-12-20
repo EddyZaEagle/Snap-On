@@ -31,10 +31,12 @@ class InventoryViewController: UIViewController {
         let tableView = inventoryStackView.subviews[1].subviews[2] as! InventoryTableView
         tableView.delegate = inventoryStackView.subviews[1].subviews[2] as! InventoryTableView
         tableView.dataSource = inventoryStackView.subviews[1].subviews[2] as! InventoryTableView
+        tableView.inventoryDelegate = self
         
         let collection = inventoryStackView.subviews[1].subviews[0] as! CartCollectionView
         collection.delegate = inventoryStackView.subviews[1].subviews[0] as! CartCollectionView
         collection.dataSource = inventoryStackView.subviews[1].subviews[0] as! CartCollectionView
+        collection.cartDelegate = self
         
         let tabBar = inventoryStackView.subviews[2] as! InventoryTabBar
         tabBar.delegate = inventoryStackView.subviews[2] as! InventoryTabBar
@@ -81,5 +83,16 @@ extension InventoryViewController: InventoryTabBarDelegate {
             }
         }
     }
+}
+
+extension InventoryViewController: InventoryTableViewDelegate {
+    func itemSelected() {
+        if let vc = storyboard?.instantiateViewController(identifier: "itemVC") as? ItemViewController {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+}
+
+extension InventoryViewController: CartCollectionViewDelegate {
     
 }

@@ -9,8 +9,7 @@
 import UIKit
 
 protocol ScannerViewDelegate {
-    func findEmployee(wms: UITextField)
-    func findItem(bacode: UITextField)
+    func findEmployee(wms: String)
 }
 
 class ScannerView: UIView {
@@ -68,16 +67,9 @@ class ScannerView: UIView {
      Adopting and implementing delegate to check if wms text blongs to an employee at snapon
      */
     @objc fileprivate func enterButton() {
-        if let delegate = scannerDelegate {
-            switch txtWMS.tag {
-            case 101:
-                delegate.findEmployee(wms: txtWMS)
-                break
-            case 666:
-                delegate.findItem(bacode: txtWMS)
-                break
-            default:
-                print("Unknown")
+        if let delegate = scannerDelegate, let wmsText = txtWMS.text {
+            if (wmsText.checkWMS) {
+                delegate.findEmployee(wms: wmsText)
             }
         }
         else { print("error with scanner enter button delegate") }
@@ -119,4 +111,29 @@ class ScannerView: UIView {
         txtWMS.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -100).isActive = true
     }
 
+}
+
+extension String {
+    
+    /**
+     Checks if charactor are between A and Z in acii values and is not greater than eight.
+     - Returns: Boolean
+     */
+    var checkWMS: Bool {
+        if (self.count > 8 && self.isEmpty) { return false } // if wms's charactor count is greater then 8 and is empty
+        // iterate through wms string
+        for x in self {
+            if !isCharA2ZACII(wmsChar: x) { return false }
+        }
+        
+        return true
+    }
+    
+    /**
+     Sees if charactor is between 65 and 90
+     - Returns: Boolean
+     */
+    private func isCharA2ZACII(wmsChar: Character) -> Bool {
+        return wmsChar.asciiValue! >= UInt8(65) && wmsChar.asciiValue! <= UInt8(90)
+    }
 }

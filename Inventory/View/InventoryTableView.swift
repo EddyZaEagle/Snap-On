@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol InventoryTableViewDelegate {
+    func itemSelected()
+}
+
 class InventoryTableView: UITableView {
+    
+    var inventoryDelegate: InventoryTableViewDelegate?
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style.self)
@@ -33,5 +39,11 @@ extension InventoryTableView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let delegate = inventoryDelegate {
+            delegate.itemSelected()
+        }
+        else { print("error with inventory table view delegate") }
+    }
     
 }
