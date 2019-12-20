@@ -8,14 +8,12 @@
 
 import UIKit
 
-protocol ScannerViewDelegate {
-    func findEmployee(wms: String)
+@objc protocol ScannerViewDelegate {
+    @objc optional func findEmployee(txtField: UITextField)
+    @objc optional func findItem(txtFireld: UITextField)
 }
 
 class ScannerView: UIView {
-
-    @IBOutlet weak var enter: UIButton!
-    @IBOutlet weak var wms: UITextField!
     
     lazy var txtWMS: UITextField = {
         let text = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
@@ -67,9 +65,15 @@ class ScannerView: UIView {
      Adopting and implementing delegate to check if wms text blongs to an employee at snapon
      */
     @objc fileprivate func enterButton() {
-        if let delegate = scannerDelegate, let wmsText = txtWMS.text {
-            if (wmsText.checkWMS) {
-                delegate.findEmployee(wms: wmsText)
+        if let delegate = scannerDelegate {
+            switch txtWMS.tag {
+            case 101:
+                delegate.findEmployee?(txtField: txtWMS)
+                break
+            case 666:
+                delegate.findItem?(txtFireld: txtWMS)
+            default:
+                print("unknown error")
             }
         }
         else { print("error with scanner enter button delegate") }
