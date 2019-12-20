@@ -38,4 +38,16 @@ class ItemsClass: ItemsProtocol {
         _item = item
         _qty = qty
     }
+    
+    deinit {
+        print("item class deinit!!!!!!")
+    }
+    
+    public var isEmpty: Bool {
+        return _qty == 0
+    }
+    
+    public func adjustQTY(amount: Double) {
+        _qty -= amount
+    }
 }
