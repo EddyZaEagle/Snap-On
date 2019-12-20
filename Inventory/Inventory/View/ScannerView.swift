@@ -113,6 +113,8 @@ class ScannerView: UIView {
         txtWMS.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 100).isActive = true
         
         txtWMS.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -100).isActive = true
+        
+        txtWMS.tag = 101
     }
 
 }
