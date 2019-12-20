@@ -32,6 +32,15 @@ class ScannerViewController: UIViewController {
     @objc fileprivate func dismissKeyBoard() {
         self.view.endEditing(true)
     }
+    
+    private func presentInventoryViewController() {
+        if let vc = storyboard?.instantiateViewController(identifier: "inventoryVC") as? InventoryViewController {
+            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            self.present(vc, animated: true, completion: nil)
+        }
+        else { print("could not present inventory view controller") }
+    }
 }
 
 extension ScannerViewController: ScannerNavigationDelegate {
@@ -41,18 +50,16 @@ extension ScannerViewController: ScannerNavigationDelegate {
 }
 
 extension ScannerViewController: ScannerViewDelegate {
-    func findEmployee(wms: String) {
-        if (wms.isEmployee) {
-            if let vc = storyboard?.instantiateViewController(identifier: "inventoryVC") as? InventoryViewController {
-                vc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
+    func findEmployee(txtField: UITextField) {
+        if txtField.text!.checkWMS {
+            if (txtField.text! == "EMORENAM") {
+                presentInventoryViewController()
+            }
+            else {
+                txtField.selectAll(nil)
+                print("not employee")
             }
         }
-        else { print("Employee not found") }
+        else { print("not wms barcode!") }
     }
-}
-
-extension String {
-    var isEmployee: Bool { return self == "EMORENAM" }
 }
