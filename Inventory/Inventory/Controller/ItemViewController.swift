@@ -8,28 +8,120 @@
 
 import UIKit
 
+protocol ItemViewControllerDelegate {
+    func add2Cart(_ item: ItemsClass)
+}
+
 class ItemViewController: UIViewController {
     
     @IBOutlet weak var imgItem: UIImageView!
     @IBOutlet weak var lblItem: UILabel!
     @IBOutlet weak var btnAdd2Cart: UIButton!
     @IBOutlet weak var lblDiscription: UILabel!
+    @IBOutlet weak var btnUp: UIButton!
+    @IBOutlet weak var btnDown: UIButton!
+    
+    weak var item: ItemsClass!
+    private var itemQTY: Double!
+    private var count: Double = 1
+    
+    var itemDelegate: ItemViewControllerDelegate?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let item = item {
+            lblItem.text = item.item
+            lblDiscription.text = "\(1)"
+            itemQTY = item.qty
+        }
+        
+        setUpViewController()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if (item.isEmpty) {
+            print("This Item IS EMPTY!")
+            btnUp.isEnabled = false
+            btnDown.isEnabled = false
+            btnAdd2Cart.isEnabled = false
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        whenviewDisappears()
     }
-    */
+    
+    @IBAction private func upButton() {
+        if count < itemQTY {
+            count += 1
+            lblDiscription.text = "\(count)"
+        }
+    }
+    
+    @IBAction private func downButton() {
+        if count > 0 {
+            count -= 1
+            lblDiscription.text = "\(count)"
+        }
+    }
+    
+    @IBAction func add2CartButton() {
+        if let delegate = itemDelegate {
+            delegate.add2Cart(ItemsClass(id: item.id, item: item.item, qty: count))
+        }
+        else { print("Error with iem view controller delegate") }
+    }
+    
+    private func whenviewDisappears() {
+        lblDiscription.text?.removeAll()
+        lblItem.text?.removeAll()
+        imgItem = nil
+        count = 0
+        item = nil
+    }
+    
+    private func setUpViewController() {
+        setUpButton()
+        setUpAdd2Cart()
+        setUpDownButton()
+    }
+    
+    private func setUpButton() {
+        btnUp.translatesAutoresizingMaskIntoConstraints = false
+        btnUp.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        btnUp.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        btnUp.layer.cornerRadius = 20
+        btnUp.backgroundColor = .red
+        btnUp.setTitle("+", for: .normal)
+        btnUp.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        btnUp.setTitleColor(.snapOnGold, for: .normal)
+    }
+    
+    private func setUpDownButton() {
+        btnDown.translatesAutoresizingMaskIntoConstraints = false
+        btnDown.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        btnDown.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        btnDown.layer.cornerRadius = 20
+        btnDown.backgroundColor = .red
+        btnDown.setTitle("-", for: .normal)
+        btnDown.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        btnDown.setTitleColor(.snapOnGold, for: .normal)
+    }
+    
+    private func setUpAdd2Cart() {
+        btnAdd2Cart.translatesAutoresizingMaskIntoConstraints = false
+        btnAdd2Cart.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        btnAdd2Cart.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        btnAdd2Cart.layer.cornerRadius = 20
+        btnAdd2Cart.layer.borderColor = UIColor.black.cgColor
+        btnAdd2Cart.layer.borderWidth = 2
+        btnAdd2Cart.backgroundColor = .red
+        btnAdd2Cart.setTitle("Add", for: .normal)
+        btnAdd2Cart.setTitleColor(.white, for: .normal)
+    }
 
 }
