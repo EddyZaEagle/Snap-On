@@ -40,7 +40,7 @@ class ItemsClass: ItemsProtocol {
     }
     
     deinit {
-        print("item class deinit!!!!!!")
+        print("item is now nil")
     }
     
     public var isEmpty: Bool {
@@ -49,5 +49,9 @@ class ItemsClass: ItemsProtocol {
     
     public func adjustQTY(amount: Double) {
         _qty -= amount
+    }
+    
+    public func equals(id: String) -> Bool {
+        return _id == id
     }
 }
