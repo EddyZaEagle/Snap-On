@@ -9,11 +9,12 @@
 import UIKit
 
 protocol InventoryTableViewDelegate {
-    func itemSelected()
+    func itemSelected(_ index: Int)
+    var itemArray: [ItemsClass] { get }
 }
 
 class InventoryTableView: UITableView {
-    
+
     var inventoryDelegate: InventoryTableViewDelegate?
 
     override init(frame: CGRect, style: UITableView.Style) {
@@ -27,21 +28,29 @@ class InventoryTableView: UITableView {
 
 extension InventoryTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        12
+        guard let delegate = inventoryDelegate else {
+            return 0
+        }
+        
+        return delegate.itemArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "inventoryCell", for: indexPath) as! InventoryTableViewCell
         
-        cell.imageView?.backgroundColor = .lightGray
-        cell.lblItemName.text = "Item number: \(indexPath.row)"
+        guard let delegate = inventoryDelegate else {
+            cell.lblItemName.text = "Cell number: \(indexPath.row)"
+            return cell
+        }
+        
+        cell.lblItemName.text = delegate.itemArray[indexPath.row].item
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let delegate = inventoryDelegate {
-            delegate.itemSelected()
+            delegate.itemSelected(indexPath.row)
         }
         else { print("error with inventory table view delegate") }
     }
