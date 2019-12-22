@@ -9,24 +9,36 @@
 import UIKit
 
 protocol CartCollectionViewDelegate {
-    func itemSelected()
+    func itemSelected(_ index: Int)
+    var cartArray: [ItemsClass] { get }
 }
 
 class CartCollectionView: UICollectionView {
     
     var cartDelegate: CartCollectionViewDelegate?
-
+    
 }
 
 extension CartCollectionView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        guard let delegate = cartDelegate else {
+            print("error with cart collection view delegate")
+            return 0
+        }
+        
+        return delegate.cartArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemCollectionViewCell
         
-        cell.lblItemDiscription.text = "Item number: \(indexPath.row)"
+        guard let delegate = cartDelegate else {
+            cell.lblItemDiscription.text = "Item number: \(indexPath.row)"
+            
+            return cell
+        }
+        
+        cell.lblItemDiscription.text = delegate.cartArray[indexPath.row].item
         
         return cell
     }
@@ -38,7 +50,7 @@ extension CartCollectionView: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Tapped item \(indexPath.row)")
         if let delegate = cartDelegate {
-            delegate.itemSelected()
+            delegate.itemSelected(indexPath.row)
         }
         else { print("error eith cart selected delegate") }
     }
