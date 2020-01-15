@@ -43,6 +43,7 @@ class MaintenanceViewController: UIViewController {
         
         let fixAction: UIAlertAction = UIAlertAction(title: "YES", style: .default) { [weak self] (_) in
             self?.cvMaintenance.deleteItems(at: myIndex)
+            self?.intArray.remove(at: indexPath.row)
             
             DispatchQueue.main.async { [weak self] in
                 self?.cvMaintenance.reloadData()
@@ -67,13 +68,13 @@ class MaintenanceViewController: UIViewController {
 
 extension MaintenanceViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return intArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "maintenanceCell", for: indexPath) as! MaintenanceCollectionViewCell
         
-        cell.lblPowerPallet.text = "This cell number \(indexPath.row)"
+        cell.lblPowerPallet.text = "This cell number \(intArray[indexPath.row])"
         
         return cell
     }
