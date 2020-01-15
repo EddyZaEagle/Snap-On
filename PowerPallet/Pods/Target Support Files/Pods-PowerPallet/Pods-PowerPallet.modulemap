@@ -1,0 +1,6 @@
+framework module Pods_PowerPallet {
+  umbrella header "Pods-PowerPallet-umbrella.h"
+
+  export *
+  module * { export * }
+}

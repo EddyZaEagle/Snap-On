@@ -111,9 +111,6 @@ extension SafetyViewController: SafetNavBarProtocol {
 
 extension SafetyViewController: DoneProtocol {
     func checkAllSafetySpecs() {
-        for x in safetyCheckArray {
-            print("\(x.safetySpecification) \(x.passFail!)")
-        }
         if(allDone) {
             print("not all specification have been checked off")
         }

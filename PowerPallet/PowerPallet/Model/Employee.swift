@@ -68,7 +68,24 @@ struct EmployeeStruct: EmployeeProtocol {
     }
     
     public func employeeLogin(wms: String) throws {
-        if !wms.isEightCharators { throw wmsLogin.notEightCharators }
-        else if !wms.isWMS { throw wmsLogin.notWMS }
+        if !wms.isWMS { throw wmsLogin.notWMS }
     }
 }
+
+extension String {
+    
+    var isWMS: Bool {
+        if self.count != 8 { return false }
+        
+        for x in self {
+            if(!isBetweenA_Z(x)) { return false }
+        }
+        
+        return true
+    }
+    
+    private func isBetweenA_Z(_ char: Character) -> Bool {
+        return char.asciiValue! >= UInt8(65) && char.asciiValue! <= UInt8(90)
+    }
+}
+

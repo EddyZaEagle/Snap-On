@@ -43,6 +43,11 @@ class MaintenanceViewController: UIViewController {
         
         let fixAction: UIAlertAction = UIAlertAction(title: "YES", style: .default) { [weak self] (_) in
             self?.cvMaintenance.deleteItems(at: myIndex)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.cvMaintenance.reloadData()
+            }
+            
         }
         
         let notFixedAction: UIAlertAction = UIAlertAction(title: "NO", style: .cancel, handler: nil)

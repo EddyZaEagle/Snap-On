@@ -21,25 +21,32 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var btnUp: UIButton!
     @IBOutlet weak var btnDown: UIButton!
     
-    weak var item: ItemsClass!
-    private var itemQTY: Double!
-    private var count: Double = 1
+    var item: ItemsClass!
+    
+    var count: Double!
+    var itemQTY: Double!
+    var itemName: String!
+    var itemImage: UIImage!
+    var itemID: String!
     
     var itemDelegate: ItemViewControllerDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
-        if let item = item {
-            lblItem.text = item.item
-            lblDiscription.text = "\(1)"
-            itemQTY = item.qty
-        }
+//        if count == nil {
+//            count = item.qty
+//        }
+//        else {
+//            itemQTY = item.qty
+//        }
+//        lblItem.text = item.item
+//        lblDiscription.text = "\(Int(count!))"
         
         setUpViewController()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (item.isEmpty) {
+        if (itemQTY == 0) {
             print("This Item IS EMPTY!")
             btnUp.isEnabled = false
             btnDown.isEnabled = false
@@ -55,22 +62,33 @@ class ItemViewController: UIViewController {
     @IBAction private func upButton() {
         if count < itemQTY {
             count += 1
-            lblDiscription.text = "\(count)"
+            lblDiscription.text = "\(Int(count!))"
         }
     }
     
     @IBAction private func downButton() {
         if count > 0 {
             count -= 1
-            lblDiscription.text = "\(count)"
+            lblDiscription.text = "\(Int(count!))"
         }
     }
     
     @IBAction func add2CartButton() {
-        if let delegate = itemDelegate {
-            delegate.add2Cart(ItemsClass(id: item.id, item: item.item, qty: count))
+        switch btnAdd2Cart.tag {
+        case 666:
+            if count > item.qty {
+                item.addQTY(amount: count)
+            }
+            else if count < item.qty {
+                item.subtracttQTY(amount: count)
+            }
+        default:
+            if let delegate = itemDelegate {
+                delegate.add2Cart(ItemsClass(id: item.id, item: item.item, qty: count))
+                print("Item has been added")
+            }
+            else { print("Error with iem view controller delegate") }
         }
-        else { print("Error with iem view controller delegate") }
     }
     
     private func whenviewDisappears() {
@@ -78,7 +96,6 @@ class ItemViewController: UIViewController {
         lblItem.text?.removeAll()
         imgItem = nil
         count = 0
-        item = nil
     }
     
     private func setUpViewController() {

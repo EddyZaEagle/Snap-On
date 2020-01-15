@@ -29,7 +29,6 @@ class InventoryTabBar: UITabBar {
     }
     
     private func setUpTabBar() {
-        print("Tap tab")
         setUpInventorBarItem()
         setUpScannerBarItem()
         setShoppingCartBarItem()
@@ -38,12 +37,13 @@ class InventoryTabBar: UITabBar {
     private func setUpInventorBarItem() {
         let inventory = UITabBarItem(title: "Inventory", image: .add, tag: 0)
         self.items![0] = inventory
+        inventory.accessibilityIdentifier = "inventoryTabButton"
         self.selectedItem = inventory
         
     }
     
     private func setUpScannerBarItem() {
-        let scanner = UITabBarItem(title: "scanner", image: .actions, tag: 1)
+        let scanner = UITabBarItem(title: "Scanner", image: .actions, tag: 1)
         self.items![1] = scanner
     }
     

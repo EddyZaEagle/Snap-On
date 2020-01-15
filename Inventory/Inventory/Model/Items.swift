@@ -47,8 +47,12 @@ class ItemsClass: ItemsProtocol {
         return _qty == 0
     }
     
-    public func adjustQTY(amount: Double) {
-        _qty -= amount
+    public func addQTY(amount: Double) {
+        _qty += (_qty - amount)
+    }
+    
+    public func subtracttQTY(amount: Double) {
+        _qty -= (amount - _qty)
     }
     
     public func equals(id: String) -> Bool {

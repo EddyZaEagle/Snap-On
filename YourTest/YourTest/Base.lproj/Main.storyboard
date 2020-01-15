@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="vc" id="BYZ-38-t0r" customClass="ViewController" customModule="YourTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zXW-ao-yd8">
+                                <rect key="frame" x="57" y="276" width="300" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="TGE-I9-VeW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hEw-8K-j5Y">
+                                <rect key="frame" x="57" y="422" width="300" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="tiJ-9v-1Q4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93Y-7m-42a">
+                                <rect key="frame" x="182" y="643" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CcJ-3o-wfI"/>
+                                    <constraint firstAttribute="width" constant="50" id="KgN-iS-Zkp"/>
+                                </constraints>
+                                <state key="normal" title="Enter"/>
+                                <connections>
+                                    <action selector="doTask" destination="BYZ-38-t0r" eventType="touchUpInside" id="leC-m4-L07"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hEw-8K-j5Y" firstAttribute="top" secondItem="zXW-ao-yd8" secondAttribute="bottom" constant="112" id="1Iu-we-trI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="93Y-7m-42a" secondAttribute="bottom" constant="169" id="KJn-zX-zh8"/>
+                            <constraint firstItem="hEw-8K-j5Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dtn-QZ-YRS"/>
+                            <constraint firstItem="zXW-ao-yd8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="232" id="epm-4z-jrg"/>
+                            <constraint firstItem="93Y-7m-42a" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iEw-DL-Sf1"/>
+                            <constraint firstItem="zXW-ao-yd8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zkb-FJ-vzt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="txtEmail" destination="hEw-8K-j5Y" id="M4i-YP-1uC"/>
+                        <outlet property="txtName" destination="zXW-ao-yd8" id="OaJ-cR-eqp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
+        </scene>
+        <!--Other View Controller-->
+        <scene sceneID="P9Q-z9-IxN">
+            <objects>
+                <viewController storyboardIdentifier="otherVC" id="aAp-hy-2NL" customClass="OtherViewController" customModule="YourTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rld-NS-zPr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEx-4Q-8QD">
+                                <rect key="frame" x="57" y="251" width="300" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="EtW-f6-hKz"/>
+                                    <constraint firstAttribute="height" constant="50" id="MX4-Te-OAe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i16-HY-hfS">
+                                <rect key="frame" x="57" y="418" width="300" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="1Pi-TQ-azp"/>
+                                    <constraint firstAttribute="width" constant="300" id="2bd-1o-CFP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="5Z9-Gw-PBG"/>
+                                    <constraint firstAttribute="height" constant="50" id="I8B-8r-LF0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="i16-HY-hfS" firstAttribute="centerX" secondItem="Rld-NS-zPr" secondAttribute="centerX" id="DHh-pg-u4f"/>
+                            <constraint firstItem="i16-HY-hfS" firstAttribute="top" secondItem="qEx-4Q-8QD" secondAttribute="bottom" constant="117" id="FUc-DP-qzB"/>
+                            <constraint firstItem="qEx-4Q-8QD" firstAttribute="top" secondItem="lzc-Pc-fMt" secondAttribute="top" constant="207" id="Nnq-9m-kPt"/>
+                            <constraint firstItem="qEx-4Q-8QD" firstAttribute="centerX" secondItem="Rld-NS-zPr" secondAttribute="centerX" id="ko9-M9-RQS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lzc-Pc-fMt"/>
+                    </view>
+                    <connections>
+                        <outlet property="lblEmail" destination="i16-HY-hfS" id="xjc-pZ-dj4"/>
+                        <outlet property="lblName" destination="qEx-4Q-8QD" id="pPX-rL-gcU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oLQ-vM-ZX2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="70"/>
+        </scene>
+    </scenes>
+</document>

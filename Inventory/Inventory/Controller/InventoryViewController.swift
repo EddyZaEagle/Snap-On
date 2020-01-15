@@ -49,26 +49,36 @@ class InventoryViewController: UIViewController {
     }
     
     private func creatInstance() {
-        inventoryStackView = self.view.subviews[0] as? UIStackView
-        
-        inventoryNavBar = inventoryStackView.subviews[0] as? InventoryNavigationBar
-        inventoryNavBar.inventoryDelegate = self
-        
-        inventoryTableView = inventoryStackView.subviews[1].subviews[2] as? InventoryTableView
-        inventoryTableView.delegate = inventoryStackView.subviews[1].subviews[2] as? InventoryTableView
-        inventoryTableView.dataSource = inventoryStackView.subviews[1].subviews[2] as? InventoryTableView
-        inventoryTableView.inventoryDelegate = self
-        
-        scannerView = inventoryStackView.subviews[1].subviews[1] as? ScannerView
-        
-        cartCollectionView = inventoryStackView.subviews[1].subviews[0] as? CartCollectionView
-        cartCollectionView.delegate = inventoryStackView.subviews[1].subviews[0] as? CartCollectionView
-        cartCollectionView.dataSource = inventoryStackView.subviews[1].subviews[0] as? CartCollectionView
-        cartCollectionView.cartDelegate = self
-        
-        inventoryTabBar = inventoryStackView.subviews[2] as? InventoryTabBar
-        inventoryTabBar.delegate = inventoryStackView.subviews[2] as? InventoryTabBar
-        inventoryTabBar.inventoryDelegate = self
+//        inventoryStackView = self.view.subviews[0] as? UIStackView
+//        
+//        inventoryNavBar = inventoryStackView.subviews[0] as? InventoryNavigationBar
+//        inventoryNavBar.inventoryDelegate = self
+//        
+//        inventoryTableView = inventoryStackView.subviews[1].subviews[2] as? InventoryTableView
+//        inventoryTableView.delegate = inventoryStackView.subviews[1].subviews[2] as? InventoryTableView
+//        inventoryTableView.dataSource = inventoryStackView.subviews[1].subviews[2] as? InventoryTableView
+//        inventoryTableView.inventoryDelegate = self
+//        
+//        scannerView = inventoryStackView.subviews[1].subviews[1] as? ScannerView
+//        scannerView.txtWMS.tag = 666 // set wms text field tag to 666
+//        scannerView.txtWMS.placeholder = "Enter Item's Barcode" // place holder for item's barcode
+//        scannerView.scannerDelegate = self
+//        
+//        cartCollectionView = inventoryStackView.subviews[1].subviews[0] as? CartCollectionView
+//        cartCollectionView.delegate = inventoryStackView.subviews[1].subviews[0] as? CartCollectionView
+//        cartCollectionView.dataSource = inventoryStackView.subviews[1].subviews[0] as? CartCollectionView
+//        cartCollectionView.cartDelegate = self
+//        
+//        inventoryTabBar = inventoryStackView.subviews[2] as? InventoryTabBar
+//        inventoryTabBar.delegate = inventoryStackView.subviews[2] as? InventoryTabBar
+//        inventoryTabBar.inventoryDelegate = self
+    }
+    
+    private func findItemQTY(_ id: String) -> Double {
+        for x in _itemArray {
+            if x.equals(id: id) { return x.qty }
+        }
+        return 0
     }
 }
 
@@ -80,6 +90,7 @@ extension InventoryViewController: InventoryNavBarDelegate {
 }
 
 extension InventoryViewController: InventoryTabBarDelegate {
+    
     /**
      Brings inventory table view to front of UIScreen
      */
@@ -117,7 +128,14 @@ extension InventoryViewController: InventoryTableViewDelegate {
     
     func itemSelected(_ index: Int) {
         if let vc = storyboard?.instantiateViewController(identifier: "itemVC") as? ItemViewController {
-            vc.item = _itemArray[index]
+            if (inventoryStackView.subviews[1].subviews[2] is CartCollectionView) {
+                vc.item = _cartArray[index]
+                vc.itemQTY = findItemQTY(_cartArray[index].id)
+            }
+            else {
+                vc.item = _itemArray[index]
+                vc.count = 1
+            }
             vc.itemDelegate = self
             self.present(vc, animated: true, completion: nil)
         }
@@ -138,7 +156,26 @@ extension InventoryViewController: ItemViewControllerDelegate {
                 return
             }
         }
-        
+
         _cartArray.append(item)
+    }
+}
+
+extension InventoryViewController: ScannerViewDelegate {
+    func findItem(txtFireld: UITextField) {
+        let x = _itemArray.filter { $0.id == txtFireld.text! }
+        
+        if (x.isEmpty) {
+            print("item not found")
+            return
+        }
+    
+        if let vc = storyboard?.instantiateViewController(identifier: "itemVC") as? ItemViewController {
+            vc.count = 1
+            vc.item = x[0]
+            self.present(vc, animated: true, completion: nil)
+            txtFireld.text?.removeAll()
+        }
+    
     }
 }

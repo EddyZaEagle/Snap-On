@@ -48,16 +48,16 @@ class ScannerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpScannerView()
-        
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setUpScannerView()
     }
     
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
+
         setUpScannerView()
     }
     
@@ -67,13 +67,12 @@ class ScannerView: UIView {
     @objc fileprivate func enterButton() {
         if let delegate = scannerDelegate {
             switch txtWMS.tag {
-            case 101:
-                delegate.findEmployee?(txtField: txtWMS)
-                break
             case 666:
                 delegate.findItem?(txtFireld: txtWMS)
+                break
             default:
-                print("unknown error")
+                delegate.findEmployee?(txtField: txtWMS)
+                break
             }
         }
         else { print("error with scanner enter button delegate") }
@@ -113,8 +112,6 @@ class ScannerView: UIView {
         txtWMS.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 100).isActive = true
         
         txtWMS.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -100).isActive = true
-        
-        txtWMS.tag = 101
     }
 
 }

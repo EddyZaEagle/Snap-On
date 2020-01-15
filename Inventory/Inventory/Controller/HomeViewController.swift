@@ -28,13 +28,12 @@ class HomeViewController: UIViewController {
      Present Scanner view controller
      */
     @IBAction private func scannerButton() {
-        // create instance of scanner view controller to present
-        if let vc = storyboard?.instantiateViewController(identifier: "scannerVC") as? ScannerViewController {
-            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        // create instance of master nav bar view controller to present
+        if let vc = storyboard?.instantiateViewController(identifier: "masterVC") as? MasterNavBarViewController {
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }
-        else { print("Can not present scanner view controller") }
+        else { print("Can not present Master Nav Bar view controller")}
     }
     
     /**
@@ -50,9 +49,11 @@ class HomeViewController: UIViewController {
      Set up header label
      */
     private func setUpHeaderLabel() {
-        lblHeader.text = "Invertor" // initialize text
+        lblHeader.text = "Inventory" // initialize text
         lblHeader.font = UIFont.boldSystemFont(ofSize: 28) // initialize font size
         lblHeader.textColor = .snapOnGold // initialize text color to snap on gold
+        lblHeader.textAlignment = .center
+        lblHeader.accessibilityIdentifier = "HomeHeaderLabel"
     }
     
     /**
@@ -62,5 +63,6 @@ class HomeViewController: UIViewController {
         btnScanner.setTitle("Scanner", for: .normal) // set button label
         btnScanner.setTitleColor(.snapOnGold, for: .normal) // set button label font color to snap on gold
         btnScanner.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22) // set button label font size
+        btnScanner.accessibilityIdentifier = "HomeEnterButton"
     }
 }
