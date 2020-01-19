@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		8310900C239582C4008281F1 /* EmailSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8310900B239582C4008281F1 /* EmailSendView.swift */; };
 		8310900E239582F9008281F1 /* EmailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8310900D239582F9008281F1 /* EmailNavigationBar.swift */; };
 		831090142395C863008281F1 /* MaintenanceNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831090132395C863008281F1 /* MaintenanceNavigationBar.swift */; };
+		8338D17323CFF29F00FF2FDD /* EmployeeManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8338D17223CFF29F00FF2FDD /* EmployeeManger.swift */; };
 		8360324423B6F27B008AAA9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8360324323B6F27A008AAA9A /* GoogleService-Info.plist */; };
 		8364DE7C239C1F08004B0DD7 /* MaintenanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364DE7B239C1F08004B0DD7 /* MaintenanceViewController.swift */; };
 		83C0757C239350DC00AD6B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C0757B239350DC00AD6B76 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		8310900B239582C4008281F1 /* EmailSendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSendView.swift; sourceTree = "<group>"; };
 		8310900D239582F9008281F1 /* EmailNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailNavigationBar.swift; sourceTree = "<group>"; };
 		831090132395C863008281F1 /* MaintenanceNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceNavigationBar.swift; sourceTree = "<group>"; };
+		8338D17223CFF29F00FF2FDD /* EmployeeManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeManger.swift; sourceTree = "<group>"; };
 		8360324323B6F27A008AAA9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8364DE7B239C1F08004B0DD7 /* MaintenanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceViewController.swift; sourceTree = "<group>"; };
 		83C07578239350DC00AD6B76 /* PowerPallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PowerPallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,7 +90,6 @@
 				9227C190091BB7452CC2D443 /* Pods-PowerPallet.debug.xcconfig */,
 				15FB3F2EEA84A6800A0205E6 /* Pods-PowerPallet.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -160,6 +161,7 @@
 				83052067239C909C00F304F8 /* Employee.swift */,
 				83052069239C9F1B00F304F8 /* PowerPallet.swift */,
 				8305206B239CA2F200F304F8 /* SafetySpecs.swift */,
+				8338D17223CFF29F00FF2FDD /* EmployeeManger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,6 +306,7 @@
 				8310900E239582F9008281F1 /* EmailNavigationBar.swift in Sources */,
 				83C0759B2393998100AD6B76 /* SafetyViewController.swift in Sources */,
 				83C075A02393A44D00AD6B76 /* SafetyTableViewCell.swift in Sources */,
+				8338D17323CFF29F00FF2FDD /* EmployeeManger.swift in Sources */,
 				83C075992393763E00AD6B76 /* LoginView.swift in Sources */,
 				831090142395C863008281F1 /* MaintenanceNavigationBar.swift in Sources */,
 				83C075A82394842B00AD6B76 /* SafetyPDFView.swift in Sources */,
