@@ -11,14 +11,13 @@ import Foundation
 protocol EmployeeProtocol {
     var fullName: String { get }
     var wms: String { get }
-    init(firstName: String, lastName: String, wms: String)
 }
 
-struct EmployeeStruct: EmployeeProtocol {
+struct Employee: EmployeeProtocol {
     
-    private var _firstName: String
-    private var _lastName: String
-    private var _wms: String
+    var _firstName: String
+    var _lastName: String
+    var _wms: String
     
     var fullName: String {
         get { return "\(_firstName) \(_lastName)"}
@@ -26,11 +25,5 @@ struct EmployeeStruct: EmployeeProtocol {
     
     var wms: String {
         get { return _wms }
-    }
-    
-    init(firstName: String, lastName: String, wms: String) {
-        _firstName = firstName
-        _lastName = lastName
-        _wms = wms
     }
 }

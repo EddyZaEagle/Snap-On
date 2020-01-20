@@ -20,6 +20,10 @@ class MasterContainer {
     private weak var rootController: UIViewController?
     private var controller = [WeakObject]()
     
+    static var shared = MasterContainer()
+    
+    private init() {}
+    
     init(rootViewController: UIViewController) {
         rootController = rootViewController
     }

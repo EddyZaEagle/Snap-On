@@ -12,10 +12,9 @@ protocol ItemsProtocol {
     var id: String { get }
     var item: String { get }
     var qty: Double { get }
-    init(id: String, item: String, qty: Double)
 }
 
-class ItemsClass: ItemsProtocol {
+class Items: ItemsProtocol {
     
     private var _id: String
     private var _item: String
